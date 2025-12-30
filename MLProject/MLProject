@@ -1,0 +1,5 @@
+name: modelling_project
+
+entry_points:
+  main:
+    command: "modelling.py"

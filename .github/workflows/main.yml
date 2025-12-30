@@ -1,0 +1,38 @@
+name: MLflow Project CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  mlflow-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          auto-update-conda: true
+          python-version: 3.11
+          activate-environment: mlflow-env
+          auto-activate-base: false
+
+      - name: Install MLflow
+        shell: bash -l {0}
+        run: |
+          pip install mlflow
+
+      - name: Run MLflow Project
+        shell: bash -l {0}
+        env:
+          MLFLOW_TRACKING_URI: file://${{ github.workspace }}/mlruns
+        run: |
+          mlflow run MLProject
+
+      - name: Upload MLflow artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlruns
+          path: mlruns/

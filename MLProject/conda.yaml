@@ -1,0 +1,14 @@
+name: mlflow-env
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - mlflow
+      - tensorflow
+      - optuna
+      - scikit-learn
+      - dagshub
+      - numpy
+      - matplotlib
