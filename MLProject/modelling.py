@@ -26,10 +26,7 @@ model = Sequential([
 ])
 model.compile(optimizer='adam', loss='mse', metrics=['mae'])
 
-mlflow.set_experiment("LSTM_TimeSeries_Optuna")
 mlflow.tensorflow.autolog()
-
-mlflow.set_experiment("LSTM_TimeSeries")
 
 with mlflow.start_run():
     # Log parameters
