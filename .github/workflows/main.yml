@@ -30,10 +30,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASS }}
 
-      - name: Build MLflow Docker image
-        shell: bash -l {0}
+      - name: Build Docker image
         run: |
-          mlflow build-docker . -n ${{ secrets.DOCKERHUB_USERNAME }}/workflow-ci:v1
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/workflow-ci:v1
 
       - name: Push Docker image
         run: |
